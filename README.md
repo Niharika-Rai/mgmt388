@@ -129,19 +129,6 @@ The best configuration reached a **mean cross-validated R² of 0.959**, very clo
 
 ---
 
-## What I'd do next
-
-Reviewing the project later, I found several ways to make the pipeline more rigorous and closer to production quality:
-
-- **Prevent data leakage:** fit `StandardScaler` (and `PolynomialFeatures`) on the training set only, using a scikit-learn `Pipeline`, so the test set stays fully unseen.
-- **Apply the outlier filter consistently:** assign the output of `remove_outliers()` back to the DataFrame. As written, the filtered result is displayed but the models train on the full dataset.
-- **Compare like with like:** evaluate the tuned model on the same held-out test set, rather than comparing its cross-validated score with the untuned model's test score.
-- **Try gradient boosting:** benchmark XGBoost or LightGBM and add k-fold cross-validated scores for every model.
-- **Report in business units:** predict PE in raw megawatts so errors read directly as MW.
-- **Deploy:** wrap the model in a small Streamlit app or REST API so operators can enter a weather forecast and get a predicted output.
-
----
-
 ## Repository structure
 
 ```
